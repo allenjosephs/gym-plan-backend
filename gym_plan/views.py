@@ -4,9 +4,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
-class HelloView(APIView):
+# Simple view to confirm token authentication
+class AuthChecker(APIView):
     permission_classes = (IsAuthenticated,)
-
     def get(self, request):
-        content = {'message': 'Hello, World!'}
+        content = {'message': 'Your authentication has been confirmed!'}
         return Response(content)

@@ -18,7 +18,8 @@ This repo is the backend of an application called "Gym Plan".  For more informat
 - Python virtual environment
 - PostgreSQL (recommend v12.1+)
 
-## Setup Instructions (Note: all actions were performed on a Mac and assumes Python v3+)
+## Setup Instructions
+>**Note: The below actions were performed on a Mac and assumes Python v3+**
 - Clone down this repo and ```cd``` into the local directory
 - Activate a python virtual environment: ```python3 -m venv .env```
 - Set up a local PostgreSQL db
@@ -33,6 +34,18 @@ This repo is the backend of an application called "Gym Plan".  For more informat
 - Start the server: ```python3 manage.py runserver```
 - Verify server is started by visiting http://localhost:8000 in a browser
 
+## User Authentication
+Most ```GET``` routes are accessible to all users whereas all ```POST```, ```PUT```, ```DELETE``` routes require a user account and a valid JWT.  If a user's JWT refresh token is expired, the user will be required to log in again.
+
+## Routes
+| Route                 | Description |              Auth Req'd |
+|:-------------         |:-------------|            :-------------|
+| ```authChecker/```    | Simple route which returns a success message if user is successfully authenticated using JWT |    Yes     |
+| ```yourMom/```        | Is hot      |     No      |
+| ```yourMom/```        | Is hot      |     No      |
+| ```yourMom/```        | Is hot      |     No      |
+| ```yourMom/```        | Is hot      |     No      |
+
 ## Models used in this application
 - Exercise
     - XXX
@@ -42,3 +55,10 @@ This repo is the backend of an application called "Gym Plan".  For more informat
 
 - User
     - name
+
+## References
+The following resources were vital in assisting me with successfully implementing various aspects of this application.
+
+- JWT
+    - [How to Use JWT Authentication with Django REST Framework](https://simpleisbetterthancomplex.com/tutorial/2018/12/19/how-to-use-jwt-authentication-with-django-rest-framework.html)
+    - ["httpie": A handy command line tool for testing http requests in Terminal](https://httpie.org/)

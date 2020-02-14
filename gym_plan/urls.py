@@ -1,6 +1,6 @@
 from django.urls import path
-from myapi.core import views
+from . import views
 
 urlpatterns = [
-    path('hello/', views.HelloView.as_view(), name='hello'),
+    path('authChecker/', views.AuthChecker.as_view(), name='auth_checker'),
 ]
