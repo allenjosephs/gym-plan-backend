@@ -30,12 +30,14 @@ This repo is the backend of an application called "Gym Plan".  For more informat
     - ```\q```
 - Run the migrate command: ```python3 manage.py migrate```
 - Create superuser (using any desired username/pwd): ```python3 manage.py createsuperuser```
+- Install the Django REST framework: ```pip install djangorestframework```
 - Install the Django REST framework simple JWT library: ```pip install djangorestframework_simplejwt```
+- Install CORS: ```pip install django-cors-headers```
 - Start the server: ```python3 manage.py runserver```
 - Verify server is started by visiting http://localhost:8000 in a browser
 
 ## User Authentication
-Most ```GET``` routes are accessible to all users whereas all ```POST```, ```PUT```, ```DELETE``` routes require a user account and a valid JWT.  If a user's JWT refresh token is expired, the user will be required to log in again.
+Most ```GET``` routes are accessible to all users whereas all ```POST```, ```PUT```, ```DELETE``` routes require a user account and a valid JWT.  If a user's JWT refresh token has expired, the user will be required to log in again.
 
 ## Routes
 | Route                 | Description |              Auth Req'd |
