@@ -31,7 +31,7 @@ This repo is the backend of an application called "Gym Plan".  For more informat
 - Run the migrate command: ```python3 manage.py migrate```
 - Create superuser (using any desired username/pwd): ```python3 manage.py createsuperuser```
 - Install the Django REST framework: ```pip install djangorestframework```
-- Install the Django REST framework simple JWT library: ```pip install djangorestframework_simplejwt```
+- Install the Django REST framework JWT library: ```pip install djangorestframework-jwt```
 - Install CORS: ```pip install django-cors-headers```
 - Start the server: ```python3 manage.py runserver```
 - Verify server is started by visiting http://localhost:8000 in a browser

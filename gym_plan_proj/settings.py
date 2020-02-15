@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,8 +25,6 @@ SECRET_KEY = 'cjw1gv#uwszmqsgr1up#7obl_t421ozji9^b)+_i^3a6rsk-n3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -53,13 +52,20 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
-
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ],
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
 }
+
+CORS_ALLOW_CREDENTIALS = True
+ALLOWED_HOSTS = ['*']
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'gym_plan_proj.urls'
 
@@ -80,6 +86,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'gym_plan_proj.wsgi.application'
+
+# token expiration set to 24 hours
+JWT_AUTH = {
+    'JWT_RESPONSE_PAYLOAD_HANDLER' : 'gym_plan.utils.custom_jwt_response_handler',
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=86400)
+}
 
 
 # Database
@@ -114,6 +127,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
 
 
 # Internationalization
