@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class GetFullUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id','username','is_superuser','first_name', 'last_name')
+        fields = ('username', 'first_name', 'last_name', 'email', 'is_staff', 'is_superuser', 'date_joined')
 
 class UserSerializerWithToken(serializers.ModelSerializer):
 

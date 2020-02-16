@@ -26,6 +26,3 @@ urlpatterns = [
     path('token-auth/',  obtain_jwt_token, name='token_obtain'),
     path('token-auth/refresh/', refresh_jwt_token, name='token_refresh'),
 ]
-
-    # path('token-auth/', obtain_jwt_token),
-    # path('social/', include('social_app.urls'))

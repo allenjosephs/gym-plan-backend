@@ -58,6 +58,11 @@ Most ```GET``` routes are accessible to all users whereas all ```POST```, ```PUT
 - User
     - name
 
+## New skills I learned during the process of creating this project
+- Python decorators
+- JSON Web Tokens
+
+
 ## References
 The following resources were vital in assisting me with successfully implementing various aspects of this application.
 

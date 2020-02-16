@@ -63,6 +63,10 @@ REST_FRAMEWORK = {
     ),
 }
 
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+)
+
 CORS_ALLOW_CREDENTIALS = True
 ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_ALLOW_ALL = True
@@ -88,6 +92,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'gym_plan_proj.wsgi.application'
 
 # token expiration set to 24 hours
+# overrode JWT_RESPONSE_PAYLOAD_HANDLER to all return of token and user details in one view
 JWT_AUTH = {
     'JWT_RESPONSE_PAYLOAD_HANDLER' : 'gym_plan.utils.custom_jwt_response_handler',
     'JWT_ALLOW_REFRESH': True,
@@ -128,8 +133,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'home'
+# LOGIN_URL = 'login'
+# LOGIN_REDIRECT_URL = 'home'
 
 
 # Internationalization
