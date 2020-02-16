@@ -35,20 +35,29 @@ This repo is the backend of an application called "Gym Plan".  For more informat
 - Install CORS: `pip install django-cors-headers`
 - Start the server: `python3 manage.py runserver`
 - Verify server is started by visiting http://localhost:8000 in a browser
-![](images/screenshotWelcomeScreen.png)
+- The following image indicates success
+> ![](images/screenshotWelcomeScreen.png)
 
 ## User Authentication
-Most `GET` routes are accessible to all users whereas all `POST`, `PUT`, `DELETE` routes require a user account and a valid JWT.  If a user's JWT refresh token has expired, the user will be required to log in again.
+- Most `GET` routes are accessible to anonymous users whereas all `POST`, `PUT`, `DELETE` routes require a user account and a valid JWT
+- If a user's JWT refresh token has expired, the user will be required to log in again
+- In order to obtain a JWT for a given user, that user must first exist in the database
 
 ## Routes
 | Route                     | Description                                             |JWT Auth Req'd |
 |:-------------             |:-------------                                           |:------------|
+| `/`                       | Display welcome message to indicate server readiness    | No   |
 | `admin/`                  | Access the built-in Django admin utilities              | No   |
 | `token-auth/`             | "Log in" the user, returning new token and user details | No   |
 | `token-auth/refresh/`     | Obtain a refreshed token using a currently active one   | Yes  |
 | `api/users/create/`       | Create new user by providing credentials                | No   |
 | `api/users/currentUser`   | Return currently-logged-in-user details                 | Yes  |
 
+## Usage Hints
+- When performing a `GET` call on an authorized route, pass the JWT in the `Authorization` header variable with a value = The string literal 'JWT' followed by a space followed by the JWT itself
+    - Example using httpie: `http http://localhost:8000/users/currentUser Authorization: JWT <token>`
+    - Example using Postman:
+    > ![](images/screenshotPostmanExample.png)
 
 ## Models used in this application
 - Exercise
@@ -64,10 +73,10 @@ Most `GET` routes are accessible to all users whereas all `POST`, `PUT`, `DELETE
 - Python decorators
 - JSON Web Tokens
 
-
 ## References
 The following resources were vital in assisting me with successfully implementing various aspects of this application.
 
 - JWT
     - [How to Use JWT Authentication with Django REST Framework](https://simpleisbetterthancomplex.com/tutorial/2018/12/19/how-to-use-jwt-authentication-with-django-rest-framework.html)
+        > Note that while this article demonstrates the usage of the Simple JWT library, the Gym Plan application utilizes standard JWT.
     - ["httpie": A handy command line tool for testing http requests in Terminal](https://httpie.org/)
