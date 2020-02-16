@@ -8,6 +8,12 @@ from rest_framework.decorators import *
 from .serializers import *
 
 @api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def welcome(request):
+    """ Welcome message to indicate server is up and running """
+    return Response({"message": "gym plan backend up and running!"})
+
+@api_view(['GET'])
 @permission_classes([permissions.IsAuthenticated])
 def get_current_user(request):
     """ Retrieve logged-in user data """

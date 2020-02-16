@@ -20,33 +20,35 @@ This repo is the backend of an application called "Gym Plan".  For more informat
 
 ## Setup Instructions
 >**Note: The below actions were performed on a Mac and assumes Python v3+**
-- Clone down this repo and ```cd``` into the local directory
-- Activate a python virtual environment: ```python3 -m venv .env```
+- Clone down this repo and `cd` into the local directory
+- Activate a python virtual environment: `python3 -m venv .env`
 - Set up a local PostgreSQL db
-    - From a terminal: ```psql```
+    - From a terminal: `psql`
     - `CREATE DATABASE gym_plan;`
-    - `CREATE USER gym_plan WITH PASSWORD '<your password here>'`;
-    - `GRANT ALL PRIVILEGES ON DATABASE gym_plan TO gym_plan`;
-    - ```\q```
-- Run the migrate command: ```python3 manage.py migrate```
-- Create superuser (using any desired username/pwd): ```python3 manage.py createsuperuser```
-- Install the Django REST framework: ```pip install djangorestframework```
-- Install the Django REST framework JWT library: ```pip install djangorestframework-jwt```
-- Install CORS: ```pip install django-cors-headers```
-- Start the server: ```python3 manage.py runserver```
+    - `CREATE USER gym_plan WITH PASSWORD '<your password here>';`
+    - `GRANT ALL PRIVILEGES ON DATABASE gym_plan TO gym_plan;`
+    - `\q`
+- Run the migrate command: `python3 manage.py migrate`
+- Create superuser (using any desired username/pwd): `python3 manage.py createsuperuser`
+- Install the Django REST framework: `pip install djangorestframework`
+- Install the Django REST framework JWT library: `pip install djangorestframework-jwt`
+- Install CORS: `pip install django-cors-headers`
+- Start the server: `python3 manage.py runserver`
 - Verify server is started by visiting http://localhost:8000 in a browser
+    - [](images/screenshotWelcomeScreen)
 
 ## User Authentication
-Most ```GET``` routes are accessible to all users whereas all ```POST```, ```PUT```, ```DELETE``` routes require a user account and a valid JWT.  If a user's JWT refresh token has expired, the user will be required to log in again.
+Most `GET` routes are accessible to all users whereas all `POST`, `PUT`, `DELETE` routes require a user account and a valid JWT.  If a user's JWT refresh token has expired, the user will be required to log in again.
 
 ## Routes
-| Route                 | Description |              Auth Req'd |
-|:-------------         |:-------------|            :-------------|
-| ```authChecker/```    | Simple route which returns a success message if user is successfully authenticated using JWT |    Yes     |
-| ```yourMom/```        | Is hot      |     No      |
-| ```yourMom/```        | Is hot      |     No      |
-| ```yourMom/```        | Is hot      |     No      |
-| ```yourMom/```        | Is hot      |     No      |
+| Route                     | Description                                             |JWT Auth Req'd |
+|:-------------             |:-------------                                           |:------------|
+| `admin/`                  | Access the built-in Django admin utilities              | No   |
+| `token-auth/`             | "Log in" the user, returning new token and user details | No   |
+| `token-auth/refresh/`     | Obtain a refreshed token using a currently active one   | Yes  |
+| `api/users/create/`       | Create new user by providing credentials                | No   |
+| `api/users/currentUser`   | Return currently-logged-in-user details                 | Yes  |
+
 
 ## Models used in this application
 - Exercise

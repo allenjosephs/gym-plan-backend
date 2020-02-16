@@ -20,9 +20,9 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 from gym_plan import views as gym_plan_views
 
 urlpatterns = [
-    # path('', home, name='home'),
-    path('admin/', admin.site.urls),
+    path('', include('gym_plan.urls')),
     path('api/', include('gym_plan.urls')),
+    path('admin/', admin.site.urls),
     path('token-auth/',  obtain_jwt_token, name='token_obtain'),
     path('token-auth/refresh/', refresh_jwt_token, name='token_refresh'),
 ]
