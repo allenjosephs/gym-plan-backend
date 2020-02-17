@@ -55,7 +55,9 @@ This repo is the backend of an application called "Gym Plan".  For more informat
 
 ## Usage Hints
 - When performing a `GET` call on an authorized route, pass the JWT in the `Authorization` header variable with a value = The string literal 'JWT' followed by a space followed by the JWT itself
-    - Example using httpie: `http http://localhost:8000/users/currentUser Authorization: JWT <token>`
+    - Example using httpie: `http http://localhost:8000/users/currentUser "Authorization: JWT <token>"`
+        - Note the double-quotes: these are required
+        - Replace `<token>` with the full text string of a valid, non-expired JWT
     - Example using Postman:
     > ![](images/screenshotPostmanExample.png)
 

@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.db import models
 from django.contrib.auth.models import User
+from .models import Equipment
 
 class GetFullUserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -45,3 +46,9 @@ class UserSerializerWithToken(serializers.ModelSerializer):
         model = User
         fields = ('token', 'username', 'password', 'first_name',
         'last_name', 'email', 'is_staff', 'is_superuser', 'date_joined')
+
+class EquipmentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Equipment
+        fields = ('id', 'name', 'img_url', 'icon_url',)

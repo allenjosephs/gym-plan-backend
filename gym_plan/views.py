@@ -2,10 +2,13 @@
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import permissions
+from rest_framework import permissions, generics
 from rest_framework.decorators import *
 
 from .serializers import *
+from .models import Equipment
+
+
 
 @api_view(['GET'])
 @permission_classes([permissions.AllowAny])
@@ -37,3 +40,7 @@ class CreateUserView(APIView):
             return Response({"response" : "error", "message" : serializer.errors})
 
         return Response({"response" : "success", "message" : "user created succesfully"})
+
+class EquipmentList(generics.ListCreateAPIView):
+    queryset = Equipment.objects.all()
+    serializer_class = EquipmentSerializer
