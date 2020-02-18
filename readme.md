@@ -74,6 +74,8 @@ This repo is the backend of an application called "Gym Plan".  For more informat
 ## New skills I learned during the process of creating this project
 - Python decorators
 - JSON Web Tokens
+- Django many-to-many with custom `through` table
+- Django admin customization with inlines and list_display
 
 ## References
 The following resources were vital in assisting me with successfully implementing various aspects of this application.
