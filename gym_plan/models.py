@@ -63,20 +63,16 @@ class Set(models.Model):
     exercises = models.ManyToManyField(
         Exercise,
         through='ExerciseSet',
-        blank=True
+        blank=True,
+        related_name='sets'
     )
-
-    workout = models.ForeignKey(
-            "Workout",
-            on_delete=models.CASCADE,
-        )
 
     def __str__(self):
         return self.label if self.label else str(self.id)
 
 class Workout(models.Model):
     name = models.CharField(max_length=50)
-    description = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True, default='')
 
     creator = models.ForeignKey(
         User,
@@ -87,6 +83,12 @@ class Workout(models.Model):
     users = models.ManyToManyField(
         User,
         related_name="shared_with_users",
+        blank=True
+    )
+
+    sets = models.ManyToManyField(
+        Set,
+        through='SetWorkout',
         blank=True
     )
 
@@ -102,12 +104,27 @@ class Workout(models.Model):
         return self.name
 
 class ExerciseSet(models.Model):
-    aSet = models.ForeignKey(Set, on_delete=models.CASCADE)
+    aSet = models.ForeignKey(Set, on_delete=models.CASCADE, related_name='set_exercises')
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
     order = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.exercise.name
+
+class SetWorkout(models.Model):
+    workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
+    aSet = models.ForeignKey(Set, on_delete=models.CASCADE)
+    order = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return self.workout.name
+
+
+###### BEGIN ADMIN-MODELS ########
+"""
+The following models are for customization
+of the Django /admin panel
+"""
 
 class ExerciseSetInline(admin.TabularInline):
     model = ExerciseSet
@@ -117,7 +134,7 @@ class SetAdmin(admin.ModelAdmin):
     inlines = (ExerciseSetInline, )
 
 class SetInline(admin.TabularInline):
-    model = Set
+    model = SetWorkout
     extra = 1
 
 class EquipmentAdmin(admin.ModelAdmin):
@@ -135,4 +152,4 @@ class WorkoutAdmin(admin.ModelAdmin):
         SetInline,
     ]
 
-
+###### END ADMIN-MODELS ########

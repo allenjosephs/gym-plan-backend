@@ -2,13 +2,12 @@
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.mixins import *
 from rest_framework import permissions, generics
 from rest_framework.decorators import *
 
 from .serializers import *
 from .models import Equipment
-
-
 
 @api_view(['GET'])
 @permission_classes([permissions.AllowAny])
@@ -41,6 +40,44 @@ class CreateUserView(APIView):
 
         return Response({"response" : "success", "message" : "user created succesfully"})
 
-class EquipmentList(generics.ListCreateAPIView):
+class EquipmentList(generics.ListAPIView):
     queryset = Equipment.objects.all()
     serializer_class = EquipmentSerializer
+
+class MuscleGroupList(generics.ListAPIView):
+    permission_classes = (permissions.AllowAny, )
+    queryset = MuscleGroup.objects.all()
+    serializer_class = MuscleGroupSerializer
+
+class ExerciseList(generics.ListAPIView):
+    permission_classes = (permissions.AllowAny, )
+    queryset = Exercise.objects.all()
+    serializer_class = ExerciseSerializer
+
+class WorkoutList(generics.ListAPIView):
+    """
+    View to retrieve all workouts in the system
+    Only available to site admins.
+    """
+    permission_classes = (permissions.IsAuthenticated, permissions.IsAdminUser, )
+    queryset = Workout.objects.all()
+    serializer_class = WorkoutSerializer
+
+class UserWorkoutList(generics.ListAPIView):
+
+    serializer_class = WorkoutSerializer
+
+    def get_queryset(self):
+        user_id = self.request.user.id
+        return Workout.objects.filter(creator=user_id)
+
+class WorkoutCreate(generics.CreateAPIView):
+    serializer_class = WorkoutSerializerCreate
+
+class WorkoutDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Workout.objects.all()
+    serializer_class = WorkoutSerializer
+
+class SetCreate(generics.CreateAPIView):
+    # serializer_class = SetSerializerCreate
+    pass
