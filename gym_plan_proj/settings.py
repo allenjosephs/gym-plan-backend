@@ -200,13 +200,12 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
-
 #location where django collect all static files
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATIC_URL = '/static/'
 
 # location where you will store your static files
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'gym_plan/static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
