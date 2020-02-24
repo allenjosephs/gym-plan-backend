@@ -1,0 +1,42 @@
+{
+  "name": "gym-plan-backend",
+  "version": "1.0.0",
+  "description": "## Project Overview This repo is the backend of an application called \"Gym Plan\".  For more information on the overall purpose/intent of the application, please reference the front-end repo linked below.",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "classnames": "2.2.6",
+    "dom-helpers": "5.1.3",
+    "js-tokens": "4.0.0",
+    "csstype": "2.6.9",
+    "invariant": "2.2.4",
+    "keycode": "2.2.0",
+    "loose-envify": "1.4.0",
+    "dotenv": "8.2.0",
+    "object-assign": "4.1.1",
+    "popper.js": "1.16.1",
+    "prop-types": "15.7.2",
+    "react-is": "16.12.0",
+    "prop-types-extra": "1.1.1",
+    "react-lifecycles-compat": "3.0.4",
+    "react-transition-group": "4.3.0",
+    "regenerator-runtime": "0.13.3",
+    "uncontrollable": "7.1.1",
+    "react-overlays": "2.1.1",
+    "warning": "4.0.3",
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allenjosephs/gym-plan-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/allenjosephs/gym-plan-backend/issues"
+  },
+  "homepage": "https://github.com/allenjosephs/gym-plan-backend#readme"
+}
