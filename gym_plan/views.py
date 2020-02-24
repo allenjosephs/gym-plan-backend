@@ -79,5 +79,4 @@ class WorkoutDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = WorkoutSerializer
 
 class SetCreate(generics.CreateAPIView):
-    # serializer_class = SetSerializerCreate
-    pass
+    serializer_class = SetSerializerCreate

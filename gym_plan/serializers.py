@@ -131,4 +131,8 @@ class WorkoutSerializerCreate(serializers.ModelSerializer):
         model = Workout
         fields = ('id', 'name', 'description', 'workout_warmup', 'workout_warmup_duration', 'workout_cooldown', 'workout_cooldown_duration', 'set_rest_between', 'set_rest_duration', 'creator')
 
+class SetSerializerCreate(serializers.ModelSerializer):
+    class Meta:
+        model = Set
+        fields = ('id', 'label', 'set_repeat_count', 'interval_duration_secs', 'interval_rest_between', 'interval_rest_duration', 'exercises',)
 
