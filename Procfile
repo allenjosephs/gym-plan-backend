@@ -1,0 +1,1 @@
+web: gunicorn gym_plan_proj.wsgi --log-file -
