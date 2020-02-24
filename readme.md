@@ -21,18 +21,25 @@ This repo is the backend of an application called "Gym Plan".  For more informat
 ## Setup Instructions
 >**Note: The below actions were performed on a Mac and assumes Python v3+**
 - Clone down this repo and `cd` into the local directory
-- Activate a python virtual environment: `python3 -m venv .env`
+- Activate a python virtual environment
+    - `python3 -m venv .env`
+    - `source .env/bin/activate`
 - Set up a local PostgreSQL db
     - From a terminal: `psql`
     - `CREATE DATABASE gym_plan;`
     - `CREATE USER gym_plan WITH PASSWORD '<your password here>';`
     - `GRANT ALL PRIVILEGES ON DATABASE gym_plan TO gym_plan;`
     - `\q`
-- Run the migrate command: `python3 manage.py migrate`
-- Create superuser (using any desired username/pwd): `python3 manage.py createsuperuser`
+- Install Django `pip install django`
 - Install the Django REST framework: `pip install djangorestframework`
 - Install the Django REST framework JWT library: `pip install djangorestframework-jwt`
 - Install CORS: `pip install django-cors-headers`
+- Install psycopg2: `pip install psycopg2-binary`
+- Install dj_datab_url: `pip install dj_database_url`
+- Install whitenoise: `pip install whitenoise`
+- Install gunicorn: `pip install gunicorn`
+- Run the migrate command: `python3 manage.py migrate`
+- Create superuser (using any desired username/pwd): `python3 manage.py createsuperuser`
 - Start the server: `python3 manage.py runserver`
 - Verify server is started by visiting http://localhost:8000 in a browser
 - The following image indicates success

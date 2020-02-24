@@ -23,7 +23,7 @@
     "regenerator-runtime": "0.13.3",
     "uncontrollable": "7.1.1",
     "react-overlays": "2.1.1",
-    "warning": "4.0.3",
+    "warning": "4.0.3"
   },
   "devDependencies": {},
   "scripts": {
