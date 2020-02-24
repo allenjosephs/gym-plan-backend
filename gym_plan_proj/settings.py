@@ -77,7 +77,8 @@ CORS_ORIGIN_WHITELIST = (
 
 CORS_ALLOW_CREDENTIALS = True
 # ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'gym-plan-builder.herokuapp.com']
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', '.herokuapp.com']
+# ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'gym_plan_proj.urls'
