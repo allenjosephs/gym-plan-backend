@@ -131,8 +131,27 @@ class WorkoutSerializerCreate(serializers.ModelSerializer):
         model = Workout
         fields = ('id', 'name', 'description', 'workout_warmup', 'workout_warmup_duration', 'workout_cooldown', 'workout_cooldown_duration', 'set_rest_between', 'set_rest_duration', 'creator')
 
+# class SetSerializerCreate(serializers.ModelSerializer):
+#     set_workout = serializers.PrimaryKeyRelatedField(many=True, queryset=Workouts.objects.all())
+
+#     class Meta:
+#         model = Set
+#         fields = ('id', 'label', 'set_repeat_count', 'interval_duration_secs', 'interval_rest_between', 'interval_rest_duration', 'exercises',)
+
 class SetSerializerCreate(serializers.ModelSerializer):
+
     class Meta:
         model = Set
-        fields = ('id', 'label', 'set_repeat_count', 'interval_duration_secs', 'interval_rest_between', 'interval_rest_duration', 'exercises',)
+        fields = ('id', 'label', 'set_repeat_count', 'interval_duration_secs', 'interval_rest_between', 'interval_rest_duration', 'exercises')
+
+    def create(self, validated_data):
+        print(validated_data)
+        print(self.initial_data)
+        instance = Set.objects.create(**validated_data)
+        set_workout_instance = SetWorkout.objects.create(
+            workout_id=self.initial_data['workout'],
+            aSet_id=instance.id,
+            order=self.initial_data['order']
+        )
+        return instance
 
